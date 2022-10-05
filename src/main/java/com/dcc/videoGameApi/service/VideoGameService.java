@@ -32,11 +32,11 @@ public class VideoGameService {
         return videoGame;
     }
 
-    public HashMap<String, Integer> GetPlatformSales() {
-        List<String> platforms = videoGameRepository.findAll().stream().filter(v -> v.getYear() > 2013).map(w -> w.getPlatform()).distinct().collect(Collectors.toList());
-        HashMap<String, Integer> globalSales = new HashMap<String, Integer>();
+    public HashMap<String, Double> GetPlatformSales() {
+        List<String> platforms = videoGameRepository.findAll().stream().filter(v -> v.getYear() >= 2013).map(w -> w.getPlatform()).distinct().collect(Collectors.toList());
+        HashMap<String, Double> globalSales = new HashMap<String, Double>();
         for(String x: platforms){
-            Integer totalSales = Math.toIntExact(videoGameRepository.findAll().stream().filter(y -> y.getYear() > 2013).filter(z -> z.getPlatform().equals(x)).count());
+            Double totalSales = videoGameRepository.findAll().stream().filter(y -> y.getYear() >= 2013).filter(z -> z.getPlatform().equals(x)).map(a -> a.getGlobalsales()).reduce((double) 0, (e1, e2) ->e1 + e2);
             globalSales.put(x, totalSales);
         }
 
