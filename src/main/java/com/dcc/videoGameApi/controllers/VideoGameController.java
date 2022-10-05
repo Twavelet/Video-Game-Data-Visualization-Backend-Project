@@ -29,7 +29,7 @@ public class VideoGameController {
     public List<VideoGame> GetById(@PathVariable Integer id) {return service.GetVideoGameById(id);}
 
     @GetMapping ("/platform")
-    public HashMap<String, Integer> GetByConsole() {return service.GetPlatformSales();}
+    public HashMap<String, Integer> GetSalesByConsole() {return service.GetPlatformSales();}
 
 }
 
