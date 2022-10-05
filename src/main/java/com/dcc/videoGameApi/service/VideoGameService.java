@@ -26,7 +26,7 @@ public class VideoGameService {
 
     public List<VideoGame> GetVideoGameById(Integer id){
        List <VideoGame> videoGame = videoGameRepository.findAll().stream().filter(v -> id.equals(v.getId())).toList();
-       
+
         return videoGame;
     }
 
