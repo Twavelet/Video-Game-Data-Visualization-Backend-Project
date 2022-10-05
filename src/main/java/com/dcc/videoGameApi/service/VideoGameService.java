@@ -3,12 +3,10 @@ package com.dcc.videoGameApi.service;
 import com.dcc.videoGameApi.models.VideoGame;
 import com.dcc.videoGameApi.repository.VideoGameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.metadata.CallMetaDataProviderFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @Service
@@ -26,10 +24,10 @@ public class VideoGameService {
         return videoGameRepository.findAll().stream().toList();
     }
 
-    public List<VideoGame> GetAllVideoGamesById(){
-
-        
-        return videoGameRepository.findAll().stream().filter(v -> v.getId().equals()).toList();
+    public List<VideoGame> GetVideoGameById(Integer id){
+       List <VideoGame> videoGame = videoGameRepository.findAll().stream().filter(v -> id.equals(v.getId())).toList();
+       
+        return videoGame;
     }
 
 }
