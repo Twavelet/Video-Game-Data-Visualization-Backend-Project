@@ -30,4 +30,11 @@ public class VideoGameService {
         return videoGame;
     }
 
+    public List<VideoGame> GetPlatformSales() {
+        List<VideoGame> platformSales = videoGameRepository.findAll().stream().filter((v -> v.getPlatform().equals("Wii"))).toList();
+
+
+
+        return platformSales;
+    }
 }
