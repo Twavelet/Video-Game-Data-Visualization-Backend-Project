@@ -6,6 +6,7 @@ import com.dcc.videoGameApi.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -28,7 +29,7 @@ public class VideoGameController {
     public List<VideoGame> GetById(@PathVariable Integer id) {return service.GetVideoGameById(id);}
 
     @GetMapping ("/platform")
-    public List<VideoGame> GetByConsole() {return service.GetPlatformSales();}
+    public HashMap<String, Integer> GetByConsole() {return service.GetPlatformSales();}
 
 }
 
