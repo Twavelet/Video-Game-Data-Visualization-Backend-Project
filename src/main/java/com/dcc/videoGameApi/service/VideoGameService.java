@@ -30,4 +30,12 @@ public class VideoGameService {
         return videoGame;
     }
 
+    public List<VideoGame> GetVideoGameByName(String name){
+        List <VideoGame> videoName = videoGameRepository.findAll().stream().filter(v -> name.equals(v.getName())).toList();
+
+        return videoName;
+    }
+
+
+
 }

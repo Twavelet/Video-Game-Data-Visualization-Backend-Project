@@ -27,6 +27,10 @@ public class VideoGameController {
     @GetMapping (value = "/games/{id}")
     public List<VideoGame> GetById(@PathVariable Integer id) {return service.GetVideoGameById(id);}
 
+    @RequestMapping("/name")
+    public List<VideoGame> GetByName() {return service.GetVideoGameByName("");}
+
+
 }
 
 
