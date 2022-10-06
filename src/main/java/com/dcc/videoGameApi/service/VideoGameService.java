@@ -42,4 +42,17 @@ public class VideoGameService {
 
         return globalSales;
     }
+
+    public HashMap<String, Integer> GetRankedPublisher() {
+        List<String> publishers = videoGameRepository.findAll().stream().filter(y -> y.getGame_rank() <= 300 && y.getGenre().equals("Action")).map(w -> w.getPublisher()).distinct().collect(Collectors.toList());
+        HashMap<String,Integer> gameAmountPublished = new HashMap<String, Integer>();
+        for(String x: publishers){
+            Integer totalGames = Math.toIntExact(videoGameRepository.findAll().stream().filter(y -> y.getGame_rank() <= 300 && y.getGenre().equals("Action")).filter(l -> l.getPublisher().equals(x)).count());
+
+            gameAmountPublished.put(x, totalGames);
+        }
+
+        return gameAmountPublished;
+    }
+
 }

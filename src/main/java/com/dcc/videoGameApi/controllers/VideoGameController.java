@@ -31,6 +31,9 @@ public class VideoGameController {
     @GetMapping ("/platform")
     public HashMap<String, Double> GetSalesByConsole() {return service.GetPlatformSales();}
 
+    @GetMapping(value = "/ranked_publisher")
+    public HashMap<String, Integer> GetBestPublisher() {return service.GetRankedPublisher();}
+
 }
 
 
