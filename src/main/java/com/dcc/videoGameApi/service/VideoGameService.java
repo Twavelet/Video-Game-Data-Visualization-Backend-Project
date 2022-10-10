@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 @Transactional
 @Service
@@ -56,13 +57,15 @@ public class VideoGameService {
     }
 
     public HashMap<String, Double> GetCopies() {
-        List<String> consoles = videoGameRepository.findAll().stream().filter(v -> v.getYear() >= 2013).map(w -> w.getPlatform()).distinct().collect(Collectors.toList());
-        HashMap<String, Double> copiesSold = new HashMap<String, Double>();
-        for(String x: consoles){
-            Double totalCopies = videoGameRepository.findAll().stream().filter(y -> y.getYear() >= 2013).filter(z -> z.getPlatform().equals(x)).map(a -> a.getGlobalsales()).reduce((double) 0, (e1, e2) ->e1 + e2);
-            copiesSold.put(x, totalCopies);
+        List <String> publishers = videoGameRepository.findAll().stream().filter(v -> v.getYear() >= 1980).map(w -> w.getPublisher()).distinct().collect(Collectors.toList());
+        HashMap <String, Double> copiesSold = new HashMap<String, Double>();
+        for(String x: publishers){
+            Double totalCopies = videoGameRepository.findAll().stream().filter(y -> y.getYear() >= 1980).filter(z -> z.getPublisher().equals(x)).map(g -> g.getGlobalsales()).reduce((double) 0, (e1, e2) -> e1 + e2);
+            if (totalCopies >= 50){
+                copiesSold.put(x, totalCopies);
+            }
         }
-
+        
         return copiesSold;
     }
 
