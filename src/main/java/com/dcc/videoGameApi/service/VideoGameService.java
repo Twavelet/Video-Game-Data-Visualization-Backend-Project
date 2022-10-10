@@ -65,7 +65,7 @@ public class VideoGameService {
                 copiesSold.put(x, totalCopies);
             }
         }
-        
+
         return copiesSold;
     }
 
