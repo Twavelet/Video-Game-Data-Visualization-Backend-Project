@@ -21,18 +21,32 @@ public class VideoGameController {
         return service.GetCountOfGames();
     }
 
+
     @GetMapping("/games")
-    public List<VideoGame> GetAll() {return service.GetAllVideoGames();}
+    public List<VideoGame> GetAll() {
+        return service.GetAllVideoGames();
+    }
 
 
     @GetMapping (value = "/games/{id}")
-    public List<VideoGame> GetById(@PathVariable Integer id) {return service.GetVideoGameById(id);}
+    public List<VideoGame> GetById(@PathVariable Integer id) {
+        return service.GetVideoGameById(id);
+    }
+
 
     @GetMapping ("/platform")
-    public HashMap<String, Double> GetSalesByConsole() {return service.GetPlatformSales();}
+    public HashMap<String, Double> GetSalesByConsole() {
+        return service.GetPlatformSales();
+    }
+
 
     @GetMapping(value = "/ranked_publisher")
-    public HashMap<String, Integer> GetBestPublisher() {return service.GetRankedPublisher();}
+    public HashMap<String, Integer> GetBestPublisher() {
+        return service.GetRankedPublisher();
+    }
+
+    @GetMapping ("/copies")
+    public HashMap<String, Double> GetCopiesPerConsole() { return service.GetCopies(); }
 
 }
 
